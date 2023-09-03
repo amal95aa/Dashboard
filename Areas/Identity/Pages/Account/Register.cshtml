@@ -1,0 +1,57 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="login-dark">
+    <div class="container">
+        <div class="card">
+            <h2>Register Form</h2>
+            <hr />
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="FirstName">First Name</label>
+                        <input type="text" asp-for="Input.FirstName" id="FirstName" class="form-control" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="LastName">Last Name</label>
+                        <input type="text" asp-for="Input.LastName" id="LastName" class="form-control" />
+                    </div>
+                </div>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                <label asp-for="Input.Email" class="form-label">Email</label>
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+
+                <label asp-for="Input.Password" class="form-label">Password</label>
+                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+
+                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+
+                <button id="registerSubmit" type="submit">Register</button>
+                <div class="mt-4">
+                    <p>
+                        <b>Do you have Acount?</b>
+                        <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Login</a>
+                    </p>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

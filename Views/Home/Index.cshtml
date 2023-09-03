@@ -1,0 +1,220 @@
+﻿@model IEnumerable<Product>
+
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home Page";
+    var s = ViewBag.s;
+}
+
+
+<header>
+    <!-- Vertical Navbar -->
+    <nav class="navbar show navbar-vertical h-sm-screen navbar-expand-sm px-0 py-3 navbar-light bg-white border-bottom border-bottom-sm-0 border-end-sm m-2" id="navbarVertical">
+        <div class="container-fluid">
+            <!-- Toggler -->
+            <button class="navbar-toggler m-2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Brand -->
+            <a class="navbar-brand py-sm-2 mb-sm-5 px-sm-6 me-0" href="#">
+                <img src="~/images/dashboard.png" height="50px"/>
+            </a>
+            <!-- User menu (mobile) -->
+            <div class="navbar-user d-sm-none">
+                <!-- Dropdown -->
+                <div class="dropdown">
+                    <!-- Toggle -->
+                    <!-- Menu -->
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="sidebarAvatar">
+                        <a asp-action="Index" class="dropdown-item">Products</a>
+                        <a asp-action="ProductDetails" class="dropdown-item">Products Details</a>
+                        <a asp-action="PaymentAccept" class="dropdown-item">Payment Methods</a>
+                        <a asp-action="Index" class="dropdown-item">Customers</a>
+                        <a asp-action="Invoice" class="dropdown-item">Invoices</a>
+                        <hr class="dropdown-divider">
+                        <a href="" class="dropdown-item">Logout</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="sidebarCollapse">
+                <!-- Navigation -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a asp-action="Index" class="nav-link">
+                            <i class="fa fa-product-hunt"></i> Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="ProductDetails" class="nav-link">
+                            <i class="fa fa-bar-chart"></i> Products Details
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="PaymentAccept" class="nav-link">
+                            <i class="fa fa-credit-card-alt"></i> Payment Methods
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Index" class="nav-link">
+                            <i class="fa fa-user"></i> Customers
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="InvoiceList" class="nav-link">
+                            <i class="fa fa-receipt"></i> Invoices
+                        </a>
+                    </li>
+                </ul>
+                <!-- Divider -->
+                <hr class="navbar-divider my-5 opacity-20">
+                <!-- Navigation -->
+
+                <div class="mt-auto"></div>
+                <!-- User (md) -->
+                <ul class="navbar-nav">
+                        <partial name="_LoginPartial" />
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<!-- Dashboard -->
+<div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+    <!-- Main content -->
+    <div class="h-screen flex-grow-1 overflow-y-lg-auto">
+        <!-- Header -->
+        <header class="bg-surface-primary border-bottom pt-6 pb-4">
+            <div class="container-fluid">
+                <div class="mb-npx">
+                    <div class="row align-items-center">
+                        <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+                            <!-- Title -->
+                            <h1 class="h2 mb-2 ls-tight">Products</h1>
+                        </div>
+
+
+                        <!-- Actions -->
+                        <div class="col-sm-6 col-12 text-sm-end">
+                            <div class="mx-n1 d-inline-flex">
+                                <!-- Search -->
+                                <form asp-action="Index" method="post">
+                                    <div class="input-group">
+                                        @if (s != null)
+                                        {
+                                            <a asp-action="index"><i class="fa fa-circle-xmark fa-lg"></i></a>
+                                        }
+                                        <div class="form-outline">
+                                            <input type="search" name="ProductName" class="form-control h-50px ps-15" placeholder="Search" />
+                                        </div>
+
+                                        <button type="submit" class="btn btn-dark me-4"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </form>
+
+                                <button type="button" class="btn d-inline-flex btn-dark btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <span class=" pe-2">
+                                        <i class="fa fa-plus"></i>
+                                    </span>
+                                    <span>Add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <!-- Main -->
+        <main class="py-6 bg-surface-secondary">
+            <div class="container-fluid">
+
+                <div class="card shadow border-0 mb-7">
+                    <div class="card-header">
+                        <h5 class="mb-3 pt-8 text-sccuess">Hello @ViewBag.Name</h5>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-nowrap text-center">
+                            <thead class="thead-light">
+                                <tr style="font-weight: bold">
+                                    <th scope="col">Product Number</th>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Image Name</th>
+                                    <th colspan="2">Procedure</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="pt-3">@item.Id</td>
+                                            <td class="pt-3">@item.ProductName</td>
+                                            <td class="pt-3">@item.Price</td>
+                                            <td class="pt-3">@item.Image</td>
+                                            <td><a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a></td>
+                                            <td><a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a></td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add new product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form asp-action="AddProduct" method="post">
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <lable for="ProductName">Product Name</lable>
+                                <input type="text" id="ProductName" name="ProductName" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <lable for="Price">Product Price</lable>
+                                <input type="number" id="Price" name="Price" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <lable for="Image">Image Name</lable>
+                                <input type="text" id="Image" name="Image" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-dark">Add</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

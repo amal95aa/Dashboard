@@ -1,0 +1,43 @@
+﻿@model ProductDetails
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutShopping.cshtml";
+}
+
+
+
+
+<section class="container py-5" style="font-size:20px; font-family:'Calisto MT';">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="images p-3">
+                            <div class="text-center p-4">
+                                <img id="main-image" src="~/Images/@Model.Image" width="430px" height="350px" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product p-4">
+                            <div class="mt-4 mb-3">
+                                <h5 style="color:#754C41;">@Model.ProductName</h5>
+                                <div class="price d-flex flex-row align-items-center">
+                                    <div class="ml-2" style="font-weight: bold">SR @Model.Price</div>
+                                </div>
+                            </div>
+                            <p class="about" style="color:black; font-size:16px">@Model.Display</p>
+                            <div class="cart mt-4 align-items-center">
+                                <a asp-action="Checkout" asp-route-id="@Model.Id" role="button" class="btn mr-2 px-4 text-light" style="background-color:#754C41;">Add to cart</a>
+                                <i class="fa fa-heart text-muted"></i>
+                                <i class="fa fa-share-alt text-muted"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

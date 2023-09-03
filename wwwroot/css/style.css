@@ -1,0 +1,59 @@
+.login-dark {
+    height: 1000px;
+    background: #475d62 url(../../Images/b.jpg);
+    background-size: cover;
+    position: relative;
+}
+
+    .login-dark .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .login-dark .card {
+        width: 350px;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 15px;
+        padding: 40px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-dark h2 {
+        color: #000f;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .login-dark form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .login-dark label {
+        color: #000f;
+        margin-bottom: 5px;
+    }
+
+    .login-dark input {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .login-dark button {
+        padding: 10px;
+        background-color: #000f;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .login-dark a {
+        color: #000f;
+    }

@@ -1,0 +1,68 @@
+﻿@model Invoice
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutShopping.cshtml";
+}
+
+<section class="container py-5" style="font-size:20px; font-family:'Calisto MT';">
+      <div class="card">
+        <div class="card-body mx-4">
+            <div class="container">
+                <p class="my-5 mx-5" style="font-size: 30px;">Thank for your purchase</p>
+                <div class="row">
+                    <ul class="list-unstyled">
+                        <li class="text-black">@Model.CustomerId</li>
+                        <li class="text-muted mt-1"><span class="text-black">Invoice</span> #12345</li>
+                        <li class="text-black mt-1">April 17 2021</li>
+                    </ul>
+
+                    <hr>
+                </div>
+
+                <div class="row py-5">
+                    <div class="col-sm-10">
+                        <p style="font-weight:bold">Product Name</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <p class="float-end">@Model.ProductName</p>
+                    </div>
+                </div>
+
+                <div class="row py-5">
+                    <div class="col-sm-10">
+                        <p>Sub Total</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <p class="float-end">SR @Model.Price</p>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10">
+                        <p>Discount</p>
+                    </div>
+                    <div class="col-xl-2">
+                        <p class="float-end">SR @Model.Discount</p>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10">
+                        <p>Tax</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <p class="float-end">@Model.Tax</p>
+                    </div>
+                    <hr style="border: 2px solid black;">
+                </div>
+                <div class="row text-black">
+                    <div class="col-sm-12">
+                        <p class="float-end fw-bold">Total: SR @Model.Total</p>
+                    </div>
+                    <hr style="border: 2px solid black;">
+                </div>
+            </div>
+        </div>
+      </div>
+</section>
